@@ -12,7 +12,7 @@ void teardown(void)
 
 START_TEST(test_add_two_numbers)
 {
-  
+  ck_assert_str_eq(calculator_add("I", "I"), "II");
 }
 END_TEST
 
@@ -20,7 +20,6 @@ Suite * roman_numeral_calculator_suite(void)
 {
     Suite *s;
     TCase *tc_core;
-    TCase *tc_limits;
 
     s = suite_create("Roman Numeral Calculator");
 
