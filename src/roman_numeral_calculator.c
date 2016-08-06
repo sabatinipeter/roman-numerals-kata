@@ -27,7 +27,7 @@ int parse_roman(char *value)
       case 'C' : decimal += 100; break;
     }
   }
-  if(strstr(value, "IV") != NULL)
+  if(strstr(value, "IV") != NULL || strstr(value, "IX") != NULL)
   {
     decimal -= 2;
   }
