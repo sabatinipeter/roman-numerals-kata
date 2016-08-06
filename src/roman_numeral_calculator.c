@@ -50,7 +50,7 @@ int parse_roman(char *value)
 
 const char* convert_to_roman(int decimalValue)
 {
-  char romanNumeral[10] = "";
+  char romanNumeral[12] = "";
 
   int i;
   for(i=0; i<sizeof (decimalValues) / sizeof *(decimalValues); i++)
