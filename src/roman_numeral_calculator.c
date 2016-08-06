@@ -3,6 +3,9 @@
 #include <string.h>
 #include "roman_numeral_calculator.h"
 
+static const int decimalValues[] = { 10, 9, 5, 4, 1 };
+static const char *romanNumerals[] = { "X", "IX", "V", "IV", "I" };
+
 char *calculator_add(char *first, char *second)
 {
   int decimalValue = parse_roman(first) + parse_roman(second);
@@ -15,7 +18,8 @@ int parse_roman(char *value)
   int i;
   for(i=0; i<(int)strlen(value); i++)
   {
-    switch(value[i]) {
+    switch(value[i])
+    {
       case 'I' : decimal += 1; break;
       case 'V' : decimal += 5; break;
       case 'X' : decimal += 10; break;
@@ -23,7 +27,8 @@ int parse_roman(char *value)
       case 'C' : decimal += 100; break;
     }
   }
-  if(strstr(value, "IV") != NULL) {
+  if(strstr(value, "IV") != NULL)
+  {
     decimal -= 2;
   }
   return decimal;
@@ -33,12 +38,11 @@ const char* convert_to_roman(int decimalValue)
 {
   char romanNumeral[10] = "";
 
-  int decimalValues[] = { 10, 9, 5, 4, 1 };
-  char *romanNumerals[] = { "X", "IX", "V", "IV", "I" };
-
   int i;
-  for(i=0; i<sizeof (decimalValues) / sizeof *(decimalValues); i++){
-    while(decimalValue - decimalValues[i] >= 0) {
+  for(i=0; i<sizeof (decimalValues) / sizeof *(decimalValues); i++)
+  {
+    while(decimalValue - decimalValues[i] >= 0)
+    {
       strcat( romanNumeral, romanNumerals[i]);
       decimalValue-= decimalValues[i];
     }
