@@ -9,7 +9,11 @@ static const char *romanNumerals[] = { "M", "CM", "D", "CD", "C", "XC", "L", "XL
 char *calculator_add(char *first, char *second)
 {
   int decimalValue = parse_roman(first) + parse_roman(second);
-  return convert_to_roman(decimalValue);
+  // printf("START=================================\nDECIMAL VALUE = %d\n", decimalValue);
+  char *romanValue = convert_to_roman(decimalValue);
+  // printf("ROMAN VALUE = %s\n", romanValue);
+  // printf("END=================================\n\n", romanValue);
+  return romanValue;
 }
 
 int parse_roman(char *value)
@@ -25,15 +29,21 @@ int parse_roman(char *value)
       case 'X' : decimal += 10; break;
       case 'L' : decimal += 50; break;
       case 'C' : decimal += 100; break;
+      case 'D' : decimal += 500; break;
+      case 'M' : decimal += 1000; break;
     }
   }
   if(strstr(value, "IV") != NULL || strstr(value, "IX") != NULL)
   {
     decimal -= 2;
   }
-  else if(strstr(value, "XL") != NULL)
+  if(strstr(value, "XL") != NULL || strstr(value, "XC") != NULL)
   {
     decimal -= 20;
+  }
+  if(strstr(value, "CD") != NULL || strstr(value, "CM") != NULL)
+  {
+    decimal -= 200;
   }
   return decimal;
 }
