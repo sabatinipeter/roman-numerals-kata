@@ -25,6 +25,8 @@ START_TEST(test_add_two_numbers_multi_chars)
   ck_assert_str_eq(calculator_add("III", "IV"), "VII");
   ck_assert_str_eq(calculator_add("X", "XI"), "XXI");
   ck_assert_str_eq(calculator_add("X", "IX"), "XIX");
+
+  ck_assert_str_eq(calculator_add("XL", "IX"), "XLIX");
 }
 END_TEST
 
