@@ -32,17 +32,17 @@ int parse_roman(char *value)
 const char* convert_to_roman(int decimalValue)
 {
   char romanNumeral[10] = "";
-  while(decimalValue > 0) {
-    if(decimalValue-5 >= 0) {
-      strcat( romanNumeral, "V");
-      decimalValue-= 5;
-    } else if (decimalValue-4 >= 0) {
-      strcat( romanNumeral, "IV");
-      decimalValue-= 4;
-    } else {
-      strcat( romanNumeral, "I");
-      decimalValue-= 1;
+
+  int decimalValues[] = { 10, 9, 5, 4, 1 };
+  char *romanNumerals[] = { "X", "IX", "V", "IV", "I" };
+
+  int i;
+  for(i=0; i<sizeof (decimalValues) / sizeof *(decimalValues); i++){
+    while(decimalValue - decimalValues[i] >= 0) {
+      strcat( romanNumeral, romanNumerals[i]);
+      decimalValue-= decimalValues[i];
     }
   }
+
   return romanNumeral;
 }
