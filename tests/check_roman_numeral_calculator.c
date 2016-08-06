@@ -42,6 +42,14 @@ START_TEST(test_add_two_invalid_input)
   ck_assert_str_eq(calculator_add("VV", "V"), "INVALID INPUT");
   ck_assert_str_eq(calculator_add("LL", "V"), "INVALID INPUT");
   ck_assert_str_eq(calculator_add("DD", "V"), "INVALID INPUT");
+  // ck_assert_str_eq(calculator_add("IVI", "V"), "INVALID INPUT");
+}
+END_TEST
+
+START_TEST(test_subtract_number_from_another)
+{
+  ck_assert_str_eq(calculator_subtract("V", "I"), "IV");
+  ck_assert_str_eq(calculator_subtract("M", "II"), "CMXCVIII");
 }
 END_TEST
 
@@ -66,6 +74,7 @@ Suite * roman_numeral_calculator_suite(void)
 
     tcase_add_checked_fixture(tc_core_2, setup, teardown);
     tcase_add_test(tc_core_2, test_add_two_invalid_input);
+    tcase_add_test(tc_core_2, test_subtract_number_from_another);
     suite_add_tcase(s, tc_core_2);
 
     return s;

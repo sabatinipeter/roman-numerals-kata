@@ -15,8 +15,19 @@ char *calculator_add(char *first, char *second)
     return "INVALID INPUT";
   }
 
-  char *romanValue = convert_to_roman(f + s);
-  return romanValue;
+  return convert_to_roman(f + s);
+}
+
+char *calculator_subtract(char *first, char *second)
+{
+  int f = parse_roman(first);
+  int s = parse_roman(second);
+
+  if(!f || !s) {
+    return "INVALID INPUT";
+  }
+
+  return convert_to_roman(f - s);
 }
 
 int valid(char *value) {
