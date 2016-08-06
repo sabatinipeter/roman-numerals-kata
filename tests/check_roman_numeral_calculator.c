@@ -22,6 +22,7 @@ END_TEST
 START_TEST(test_add_two_numbers_multi_chars)
 {
   ck_assert_str_eq(calculator_add("II", "II"), "IV");
+  ck_assert_str_eq(calculator_add("III", "IV"), "VII");
 }
 END_TEST
 
