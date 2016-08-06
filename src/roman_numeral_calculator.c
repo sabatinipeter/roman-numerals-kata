@@ -8,16 +8,32 @@ static const char *romanNumerals[] = { "M", "CM", "D", "CD", "C", "XC", "L", "XL
 
 char *calculator_add(char *first, char *second)
 {
-  int decimalValue = parse_roman(first) + parse_roman(second);
-  // printf("START=================================\nDECIMAL VALUE = %d\n", decimalValue);
-  char *romanValue = convert_to_roman(decimalValue);
-  // printf("ROMAN VALUE = %s\n", romanValue);
-  // printf("END=================================\n\n", romanValue);
+  printf("START=================================\n");
+  int f = parse_roman(first);
+  int s = parse_roman(second);
+
+  if(f == -1 || s == -1) {
+    return "INVALID INPUT";
+  }
+
+  int decimalValue = f + s;
+  printf("DECIMAL VALUE = %d\n", decimalValue);
+  char *romanValue = convert_to_roman(f + s);
+  printf("ROMAN VALUE = %s\n", romanValue);
+  printf("END=================================\n\n", romanValue);
   return romanValue;
 }
 
 int parse_roman(char *value)
 {
+  if(strstr(value, "IIII") != NULL || strstr(value, "XXXX") != NULL || strstr(value, "CCCC") != NULL) {
+    return -1;
+  }
+
+  if(strstr(value, "VV") != NULL || strstr(value, "LL") != NULL || strstr(value, "DD") != NULL) {
+    return -1;
+  }
+
   int decimal = 0;
   int i;
   for(i=0; i<(int)strlen(value); i++)
@@ -31,6 +47,7 @@ int parse_roman(char *value)
       case 'C' : decimal += 100; break;
       case 'D' : decimal += 500; break;
       case 'M' : decimal += 1000; break;
+      default : return -1; break;
     }
   }
   if(strstr(value, "IV") != NULL || strstr(value, "IX") != NULL)
@@ -45,6 +62,7 @@ int parse_roman(char *value)
   {
     decimal -= 200;
   }
+
   return decimal;
 }
 
