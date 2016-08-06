@@ -30,9 +30,12 @@ const char* convert_to_roman(int decimalValue)
 {
   char romanNumeral[10] = "";
   while(decimalValue > 0) {
-    if(decimalValue-5 > 0) {
+    if(decimalValue-5 >= 0) {
       strcat( romanNumeral, "V");
       decimalValue-= 5;
+    } else if (decimalValue-4 >= 0) {
+      strcat( romanNumeral, "IV");
+      decimalValue-= 4;
     } else {
       strcat( romanNumeral, "I");
       decimalValue-= 1;
