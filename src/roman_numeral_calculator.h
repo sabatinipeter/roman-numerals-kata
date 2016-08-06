@@ -3,4 +3,6 @@
 
 char *calculator_add(char *first, char *second);
 
+const char* convert_to_roman(int decimalValue);
+
 #endif /* ROMAN_NUMERAL_CALCULATOR_H */

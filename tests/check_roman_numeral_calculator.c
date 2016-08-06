@@ -16,6 +16,13 @@ START_TEST(test_add_two_numbers)
 }
 END_TEST
 
+START_TEST(test_add_two_numbers_part_2)
+{
+  ck_assert_str_eq(calculator_add("V", "I"), "VI");
+  ck_assert_str_eq(calculator_add("I", "V"), "VI");
+}
+END_TEST
+
 Suite * roman_numeral_calculator_suite(void)
 {
     Suite *s;
@@ -28,6 +35,7 @@ Suite * roman_numeral_calculator_suite(void)
 
     tcase_add_checked_fixture(tc_core, setup, teardown);
     tcase_add_test(tc_core, test_add_two_numbers);
+    tcase_add_test(tc_core, test_add_two_numbers_part_2);
     suite_add_tcase(s, tc_core);
 
     return s;
