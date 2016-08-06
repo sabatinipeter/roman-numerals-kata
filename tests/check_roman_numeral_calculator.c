@@ -10,14 +10,10 @@ void teardown(void)
 
 }
 
-START_TEST(test_add_two_numbers)
+START_TEST(test_add_two_numbers_single_char)
 {
   ck_assert_str_eq(calculator_add("I", "I"), "II");
-}
-END_TEST
 
-START_TEST(test_add_two_numbers_part_2)
-{
   ck_assert_str_eq(calculator_add("V", "I"), "VI");
   ck_assert_str_eq(calculator_add("I", "V"), "VI");
 }
@@ -41,8 +37,7 @@ Suite * roman_numeral_calculator_suite(void)
     tc_core = tcase_create("Core");
 
     tcase_add_checked_fixture(tc_core, setup, teardown);
-    tcase_add_test(tc_core, test_add_two_numbers);
-    tcase_add_test(tc_core, test_add_two_numbers_part_2);
+    tcase_add_test(tc_core, test_add_two_numbers_single_char);
     tcase_add_test(tc_core, test_add_two_numbers_multi_chars);
     suite_add_tcase(s, tc_core);
 
