@@ -4,10 +4,10 @@ Roman Numerals Kata
 Autotools:
 
 You need the following programs installed on your system:
-  -- Autoconf 2.59
-  -- Automake 1.9.6
-  -- Libtool 1.5.22
-  -- Check 0.9.9
+  -- Autoconf 2.69-6
+  -- Automake 1.14.1
+  -- Libtool 2.4.2
+  -- Check 0.9.10
 
 Somewhat earlier versions of these programs might work.
 
