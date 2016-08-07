@@ -3,32 +3,8 @@
 #include <string.h>
 #include "roman_numeral_calculator.h"
 
-static const int decimalValues[] = { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
-static const char *romanNumerals[] = { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
-
-char *calculator_add(char *first, char *second)
-{
-  int f = parse_roman(first);
-  int s = parse_roman(second);
-
-  if(!f || !s) {
-    return "INVALID INPUT";
-  }
-
-  return convert_to_roman(f + s);
-}
-
-char *calculator_subtract(char *first, char *second)
-{
-  int f = parse_roman(first);
-  int s = parse_roman(second);
-
-  if(!f || !s) {
-    return "INVALID INPUT";
-  }
-
-  return convert_to_roman(f - s);
-}
+const int decimalValues[] = { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
+const char *romanNumerals[] = { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
 
 int valid(char *value) {
   if(strstr(value, "IIII") != NULL || strstr(value, "XXXX") != NULL || strstr(value, "CCCC") != NULL) {
@@ -77,7 +53,7 @@ int parse_roman(char *value)
   return decimal;
 }
 
-const char* convert_to_roman(int decimalValue)
+char* convert_to_roman(int decimalValue)
 {
   char romanNumeral[12] = "";
 
@@ -92,4 +68,19 @@ const char* convert_to_roman(int decimalValue)
   }
 
   return romanNumeral;
+}
+
+char *calculate(char * first, char * second, char operator)
+{
+  int f = parse_roman(first);
+  int s = parse_roman(second);
+
+  if(!f || !s) {
+    return "INVALID INPUT";
+  }
+  switch(operator)
+  {
+    case OPERATOR_ADD : return convert_to_roman(f + s); break;
+    case OPERATOR_SUBTRACT : return convert_to_roman(f - s); break;
+  }
 }

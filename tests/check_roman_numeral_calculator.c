@@ -7,49 +7,48 @@ void setup(void)
 
 void teardown(void)
 {
-
 }
 
 START_TEST(test_add_two_numbers_single_char)
 {
-  ck_assert_str_eq(calculator_add("I", "I"), "II");
-  ck_assert_str_eq(calculator_add("V", "I"), "VI");
-  ck_assert_str_eq(calculator_add("I", "V"), "VI");
+  ck_assert_str_eq(calculate("I", "I", OPERATOR_ADD), "II");
+  ck_assert_str_eq(calculate("V", "I", OPERATOR_ADD), "VI");
+  ck_assert_str_eq(calculate("I", "V", OPERATOR_ADD), "VI");
 }
 END_TEST
 
 START_TEST(test_add_two_numbers_multi_chars)
 {
-  ck_assert_str_eq(calculator_add("II", "II"), "IV");
-  ck_assert_str_eq(calculator_add("III", "IV"), "VII");
-  ck_assert_str_eq(calculator_add("X", "XI"), "XXI");
-  ck_assert_str_eq(calculator_add("X", "IX"), "XIX");
-  ck_assert_str_eq(calculator_add("XL", "IX"), "XLIX");
-  ck_assert_str_eq(calculator_add("CM", "CD"), "MCCC");
-  ck_assert_str_eq(calculator_add("CCLIV", "CCCXCIX"), "DCLIII");
-  ck_assert_str_eq(calculator_add("MCDXLIV", "MCMXCIX"), "MMMCDXLIII");
+  ck_assert_str_eq(calculate("II", "II", OPERATOR_ADD), "IV");
+  ck_assert_str_eq(calculate("III", "IV", OPERATOR_ADD), "VII");
+  ck_assert_str_eq(calculate("X", "XI", OPERATOR_ADD), "XXI");
+  ck_assert_str_eq(calculate("X", "IX", OPERATOR_ADD), "XIX");
+  ck_assert_str_eq(calculate("XL", "IX", OPERATOR_ADD), "XLIX");
+  ck_assert_str_eq(calculate("CM", "CD", OPERATOR_ADD), "MCCC");
+  ck_assert_str_eq(calculate("CCLIV", "CCCXCIX", OPERATOR_ADD), "DCLIII");
+  ck_assert_str_eq(calculate("MCDXLIV", "MCMXCIX", OPERATOR_ADD), "MMMCDXLIII");
 }
 END_TEST
 
 START_TEST(test_add_two_invalid_input)
 {
-  ck_assert_str_eq(calculator_add("i", "i"), "INVALID INPUT");
-  ck_assert_str_eq(calculator_add("I", "v"), "INVALID INPUT");
-  ck_assert_str_eq(calculator_add("I", "s"), "INVALID INPUT");
-  ck_assert_str_eq(calculator_add("IIII", "V"), "INVALID INPUT");
-  ck_assert_str_eq(calculator_add("XXXX", "V"), "INVALID INPUT");
-  ck_assert_str_eq(calculator_add("CCCC", "V"), "INVALID INPUT");
-  ck_assert_str_eq(calculator_add("VV", "V"), "INVALID INPUT");
-  ck_assert_str_eq(calculator_add("LL", "V"), "INVALID INPUT");
-  ck_assert_str_eq(calculator_add("DD", "V"), "INVALID INPUT");
-  // ck_assert_str_eq(calculator_add("IVI", "V"), "INVALID INPUT");
+  ck_assert_str_eq(calculate("i", "i", OPERATOR_ADD), "INVALID INPUT");
+  ck_assert_str_eq(calculate("I", "v", OPERATOR_ADD), "INVALID INPUT");
+  ck_assert_str_eq(calculate("I", "s", OPERATOR_ADD), "INVALID INPUT");
+  ck_assert_str_eq(calculate("IIII", "V", OPERATOR_ADD), "INVALID INPUT");
+  ck_assert_str_eq(calculate("XXXX", "V", OPERATOR_ADD), "INVALID INPUT");
+  ck_assert_str_eq(calculate("CCCC", "V", OPERATOR_ADD), "INVALID INPUT");
+  ck_assert_str_eq(calculate("VV", "V", OPERATOR_ADD), "INVALID INPUT");
+  ck_assert_str_eq(calculate("LL", "V", OPERATOR_ADD), "INVALID INPUT");
+  ck_assert_str_eq(calculate("DD", "V", OPERATOR_ADD), "INVALID INPUT");
+  // ck_assert_str_eq(calculate("IVI", "V", OPERATOR_ADD), "INVALID INPUT");
 }
 END_TEST
 
 START_TEST(test_subtract_number_from_another)
 {
-  ck_assert_str_eq(calculator_subtract("V", "I"), "IV");
-  ck_assert_str_eq(calculator_subtract("M", "II"), "CMXCVIII");
+  ck_assert_str_eq(calculate("V", "I", OPERATOR_SUBTRACT), "IV");
+  ck_assert_str_eq(calculate("M", "II", OPERATOR_SUBTRACT), "CMXCVIII");
 }
 END_TEST
 
