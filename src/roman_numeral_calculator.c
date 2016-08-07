@@ -16,41 +16,29 @@ int valid(char *value) {
   return 1;
 }
 
+int starts_with(const char *a, const char *b)
+{
+   if(strncmp(a, b, strlen(b)) == 0) {
+     return 1;
+   } else {
+     return 0;
+   }
+}
+
 int parse_roman(char *value)
 {
   if(!valid(value)) {
     return 0;
   }
-  int decimal = 0;
+  char word2[12];
   int i;
-  for(i=0; i<(int)strlen(value); i++)
+  for(i=0; i<sizeof (romanNumerals) / sizeof *(romanNumerals); i++)
   {
-    switch(value[i])
-    {
-      case 'I' : decimal += 1; break;
-      case 'V' : decimal += 5; break;
-      case 'X' : decimal += 10; break;
-      case 'L' : decimal += 50; break;
-      case 'C' : decimal += 100; break;
-      case 'D' : decimal += 500; break;
-      case 'M' : decimal += 1000; break;
-      default : return 0; break;
+    if(starts_with(value, romanNumerals[i])) {
+      int size = strlen(romanNumerals[i]);
+      return decimalValues[i] + parse_roman(strcpy(word2,&value[size]));
     }
   }
-  if(strstr(value, "IV") != NULL || strstr(value, "IX") != NULL)
-  {
-    decimal -= 2;
-  }
-  if(strstr(value, "XL") != NULL || strstr(value, "XC") != NULL)
-  {
-    decimal -= 20;
-  }
-  if(strstr(value, "CD") != NULL || strstr(value, "CM") != NULL)
-  {
-    decimal -= 200;
-  }
-
-  return decimal;
 }
 
 char* convert_to_roman(int decimalValue)

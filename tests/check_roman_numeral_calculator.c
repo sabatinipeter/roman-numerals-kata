@@ -50,8 +50,8 @@ START_TEST(test_subtract_number_from_another)
   ck_assert_str_eq(calculate("V", "I", OPERATOR_SUBTRACT), "IV");
   ck_assert_str_eq(calculate("M", "II", OPERATOR_SUBTRACT), "CMXCVIII");
 
-
   ck_assert_str_eq(calculate("I", "V", OPERATOR_SUBTRACT), MESSAGE_INVALID_OPERATION);
+  ck_assert_str_eq(calculate("V", "X", OPERATOR_SUBTRACT), MESSAGE_INVALID_OPERATION);
 }
 END_TEST
 
