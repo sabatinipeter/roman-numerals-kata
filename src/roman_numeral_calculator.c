@@ -1,19 +1,27 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <regex.h>
 #include "roman_numeral_calculator.h"
 
 const int decimalValues[] = { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
 const char *romanNumerals[] = { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
+const char *validRegex = "^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$";
+
+regex_t regex;
 
 int valid(char *value) {
-  if(strstr(value, "IIII") != NULL || strstr(value, "XXXX") != NULL || strstr(value, "CCCC") != NULL) {
-    return 0;
+  int reti = regcomp(&regex, validRegex, REG_EXTENDED);
+  if (reti) {
+      exit(1);
   }
-  if(strstr(value, "VV") != NULL || strstr(value, "LL") != NULL || strstr(value, "DD") != NULL) {
-    return 0;
+  reti = regexec(&regex, value, 0, NULL, 0);
+  if (!reti) {
+      return 1;
   }
-  return 1;
+  else if (reti == REG_NOMATCH) {
+      return 0;
+  }
 }
 
 int starts_with(const char *a, const char *b)
@@ -30,13 +38,13 @@ int parse_roman(char *value)
   if(!valid(value)) {
     return 0;
   }
-  char word2[12];
   int i;
   for(i=0; i<sizeof (romanNumerals) / sizeof *(romanNumerals); i++)
   {
     if(starts_with(value, romanNumerals[i])) {
       int size = strlen(romanNumerals[i]);
-      return decimalValues[i] + parse_roman(strcpy(word2,&value[size]));
+      char string[12];
+      return decimalValues[i] + parse_roman(strcpy(string,&value[size]));
     }
   }
 }
