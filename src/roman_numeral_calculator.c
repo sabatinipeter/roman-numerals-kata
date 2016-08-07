@@ -72,15 +72,24 @@ char* convert_to_roman(int decimalValue)
 
 char *calculate(char * first, char * second, char operator)
 {
-  int f = parse_roman(first);
-  int s = parse_roman(second);
+  int firstDecimal = parse_roman(first);
+  int secondDecimal = parse_roman(second);
 
-  if(!f || !s) {
-    return "INVALID INPUT";
+  if(!firstDecimal || !secondDecimal) {
+    return MESSAGE_INVALID_INPUT;
   }
   switch(operator)
   {
-    case OPERATOR_ADD : return convert_to_roman(f + s); break;
-    case OPERATOR_SUBTRACT : return convert_to_roman(f - s); break;
+    case OPERATOR_ADD :
+      return convert_to_roman(firstDecimal + secondDecimal);
+      break;
+
+    case OPERATOR_SUBTRACT :
+      if(firstDecimal - secondDecimal < 0) {
+        return MESSAGE_INVALID_OPERATION;
+      } else {
+        return convert_to_roman(firstDecimal - secondDecimal);
+      }
+      break;
   }
 }

@@ -32,16 +32,16 @@ END_TEST
 
 START_TEST(test_add_two_invalid_input)
 {
-  ck_assert_str_eq(calculate("i", "i", OPERATOR_ADD), "INVALID INPUT");
-  ck_assert_str_eq(calculate("I", "v", OPERATOR_ADD), "INVALID INPUT");
-  ck_assert_str_eq(calculate("I", "s", OPERATOR_ADD), "INVALID INPUT");
-  ck_assert_str_eq(calculate("IIII", "V", OPERATOR_ADD), "INVALID INPUT");
-  ck_assert_str_eq(calculate("XXXX", "V", OPERATOR_ADD), "INVALID INPUT");
-  ck_assert_str_eq(calculate("CCCC", "V", OPERATOR_ADD), "INVALID INPUT");
-  ck_assert_str_eq(calculate("VV", "V", OPERATOR_ADD), "INVALID INPUT");
-  ck_assert_str_eq(calculate("LL", "V", OPERATOR_ADD), "INVALID INPUT");
-  ck_assert_str_eq(calculate("DD", "V", OPERATOR_ADD), "INVALID INPUT");
-  // ck_assert_str_eq(calculate("IVI", "V", OPERATOR_ADD), "INVALID INPUT");
+  ck_assert_str_eq(calculate("i", "i", OPERATOR_ADD), MESSAGE_INVALID_INPUT);
+  ck_assert_str_eq(calculate("I", "v", OPERATOR_ADD), MESSAGE_INVALID_INPUT);
+  ck_assert_str_eq(calculate("I", "s", OPERATOR_ADD), MESSAGE_INVALID_INPUT);
+  ck_assert_str_eq(calculate("IIII", "V", OPERATOR_ADD), MESSAGE_INVALID_INPUT);
+  ck_assert_str_eq(calculate("XXXX", "V", OPERATOR_ADD), MESSAGE_INVALID_INPUT);
+  ck_assert_str_eq(calculate("CCCC", "V", OPERATOR_ADD), MESSAGE_INVALID_INPUT);
+  ck_assert_str_eq(calculate("VV", "V", OPERATOR_ADD), MESSAGE_INVALID_INPUT);
+  ck_assert_str_eq(calculate("LL", "V", OPERATOR_ADD), MESSAGE_INVALID_INPUT);
+  ck_assert_str_eq(calculate("DD", "V", OPERATOR_ADD), MESSAGE_INVALID_INPUT);
+  // ck_assert_str_eq(calculate("IVI", "V", OPERATOR_ADD), MESSAGE_INVALID_INPUT);
 }
 END_TEST
 
@@ -49,6 +49,9 @@ START_TEST(test_subtract_number_from_another)
 {
   ck_assert_str_eq(calculate("V", "I", OPERATOR_SUBTRACT), "IV");
   ck_assert_str_eq(calculate("M", "II", OPERATOR_SUBTRACT), "CMXCVIII");
+
+
+  ck_assert_str_eq(calculate("I", "V", OPERATOR_SUBTRACT), MESSAGE_INVALID_OPERATION);
 }
 END_TEST
 
