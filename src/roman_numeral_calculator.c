@@ -74,22 +74,23 @@ char *calculate(char * first, char * second, char operator)
   if(!firstDecimal || !secondDecimal) {
     return MESSAGE_INVALID_INPUT;
   }
+  int decimalToConvert;
+  int condition;
   switch(operator)
   {
     case OPERATOR_ADD :
-      if(firstDecimal + secondDecimal > MAX_VALUE) {
-        return MESSAGE_INVALID_OPERATION;
-      } else {
-        return convert_to_roman(firstDecimal + secondDecimal);
-      }
+      decimalToConvert = firstDecimal + secondDecimal;
+      condition = decimalToConvert > MAX_VALUE;
       break;
 
     case OPERATOR_SUBTRACT :
-      if(firstDecimal - secondDecimal <= 0) {
-        return MESSAGE_INVALID_OPERATION;
-      } else {
-        return convert_to_roman(firstDecimal - secondDecimal);
-      }
+      decimalToConvert = firstDecimal - secondDecimal;
+      condition = decimalToConvert <= 0;
       break;
+  }
+  if(condition) {
+    return MESSAGE_INVALID_OPERATION;
+  } else {
+    return convert_to_roman(decimalToConvert);
   }
 }
