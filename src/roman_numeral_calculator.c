@@ -77,11 +77,15 @@ char *calculate(char * first, char * second, char operator)
   switch(operator)
   {
     case OPERATOR_ADD :
-      return convert_to_roman(firstDecimal + secondDecimal);
+      if(firstDecimal + secondDecimal > MAX_VALUE) {
+        return MESSAGE_INVALID_OPERATION;
+      } else {
+        return convert_to_roman(firstDecimal + secondDecimal);
+      }
       break;
 
     case OPERATOR_SUBTRACT :
-      if(firstDecimal - secondDecimal < 0) {
+      if(firstDecimal - secondDecimal <= 0) {
         return MESSAGE_INVALID_OPERATION;
       } else {
         return convert_to_roman(firstDecimal - secondDecimal);
