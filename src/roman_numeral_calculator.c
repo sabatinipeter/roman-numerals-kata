@@ -6,11 +6,11 @@
 
 const int decimalValues[] = { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
 const char *romanNumerals[] = { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
-const char *validRegex = "^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$";
+const char validRegex[] = "^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$";
 
 regex_t regex;
 
-int valid(char *value) {
+int valid(char value[]) {
   int reti = regcomp(&regex, validRegex, REG_EXTENDED);
   if (reti) {
       exit(1);
@@ -24,7 +24,7 @@ int valid(char *value) {
   }
 }
 
-int starts_with(const char *a, const char *b)
+int starts_with(const char a[], const char b[])
 {
    if(strncmp(a, b, strlen(b)) == 0) {
      return 1;
@@ -33,7 +33,7 @@ int starts_with(const char *a, const char *b)
    }
 }
 
-int parse_roman(char *value)
+int parse_roman(char value[])
 {
   if(!valid(value)) {
     return 0;
@@ -66,7 +66,7 @@ char* convert_to_roman(int decimalValue)
   return romanNumeral;
 }
 
-char *calculate(char * first, char * second, char operator)
+char *calculate(char first[], char second[], char operator)
 {
   int firstDecimal = parse_roman(first);
   int secondDecimal = parse_roman(second);

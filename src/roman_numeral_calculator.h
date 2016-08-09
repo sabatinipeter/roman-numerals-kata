@@ -9,6 +9,6 @@
 #define MESSAGE_INVALID_INPUT "INVALID INPUT"
 #define MESSAGE_INVALID_OPERATION "INVALID OPERATION"
 
-char *calculate(char *first, char *second, char operator);
+char *calculate(char first[], char second[], char operator);
 
 #endif /* ROMAN_NUMERAL_CALCULATOR_H */
