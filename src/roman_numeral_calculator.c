@@ -8,6 +8,11 @@ const int decimalValues[] = { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4,
 const char *romanNumerals[] = { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
 const char validRegex[] = "^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$";
 
+struct RomanNumeral
+{
+    char value[12];
+};
+
 regex_t regex;
 
 int valid(char value[]) {
@@ -49,7 +54,7 @@ int parse_roman(char value[])
   }
 }
 
-char* convert_to_roman(int decimalValue)
+void convert_to_roman(RomanNumeral* m, int decimalValue)
 {
   char romanNumeral[12] = "";
 
@@ -62,17 +67,34 @@ char* convert_to_roman(int decimalValue)
       decimalValue-= decimalValues[i];
     }
   }
-
-  return romanNumeral;
+  strcpy(m->value, romanNumeral);
 }
 
-char *calculate(char first[], char second[], char operator)
+RomanNumeral* create_roman_numeral(){
+  RomanNumeral* m;
+
+  m = malloc(sizeof(RomanNumeral));
+
+  if (m == NULL)
+  {
+      return NULL;
+  }
+  return m;
+}
+
+void free_roman(RomanNumeral* m) {
+  free(m);
+  return;
+}
+
+char* calculate(RomanNumeral* m, char first[], char second[], char operator)
 {
   int firstDecimal = parse_roman(first);
   int secondDecimal = parse_roman(second);
 
   if(!firstDecimal || !secondDecimal) {
-    return MESSAGE_INVALID_INPUT;
+    strcpy(m->value, MESSAGE_INVALID_INPUT);
+    return m->value;
   }
   int decimalToConvert;
   int condition;
@@ -89,8 +111,9 @@ char *calculate(char first[], char second[], char operator)
       break;
   }
   if(condition) {
-    return MESSAGE_INVALID_OPERATION;
+    strcpy(m->value, MESSAGE_INVALID_OPERATION);
   } else {
-    return convert_to_roman(decimalToConvert);
+    convert_to_roman(m, decimalToConvert);
   }
+  return m->value;
 }

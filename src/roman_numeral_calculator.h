@@ -9,6 +9,12 @@
 #define MESSAGE_INVALID_INPUT "INVALID INPUT"
 #define MESSAGE_INVALID_OPERATION "INVALID OPERATION"
 
-char *calculate(char first[], char second[], char operator);
+typedef struct RomanNumeral RomanNumeral;
+
+RomanNumeral* create_roman_numeral();
+
+void free_roman(RomanNumeral* m);
+
+char* calculate(RomanNumeral* m, char first[], char second[], char operator);
 
 #endif /* ROMAN_NUMERAL_CALCULATOR_H */
