@@ -36,3 +36,13 @@ tests/check_roman_numeral_calculator-check_roman_numeral_calculator.o
 tests/check_roman_numeral_calculator.log
 tests/check_roman_numeral_calculator.trs
 tests/test-suite.log
+CMakeCache.txt
+CMakeFiles/
+CTestTestfile.cmake
+Testing/
+cmake_install.cmake
+src/CMakeFiles/
+src/cmake_install.cmake
+src/libroman_numeral_calculator.a
+tests/CMakeFiles/
+tests/cmake_install.cmake
