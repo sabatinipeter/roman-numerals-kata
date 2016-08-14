@@ -14,7 +14,7 @@ set(HEADERS
 add_library(roman_numeral_calculator STATIC ${LIB_SOURCES} ${HEADERS})
 
 add_executable(main ${HEADERS} ${MAIN_SOURCES})
-target_link_libraries(main roman_numeral_calculator)
+target_link_libraries(main roman_numeral_calculator pthread)
 
 install(TARGETS roman_numeral_calculator
   RUNTIME DESTINATION bin

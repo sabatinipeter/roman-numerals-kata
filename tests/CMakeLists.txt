@@ -14,4 +14,4 @@ set(TEST_SOURCES
 )
 
 add_executable(check_roman_numeral_calculator ${TEST_SOURCES})
-target_link_libraries(check_roman_numeral_calculator roman_numeral_calculator ${CHECK_LIBRARIES})
+target_link_libraries(check_roman_numeral_calculator roman_numeral_calculator ${CHECK_LIBRARIES} pthread)
