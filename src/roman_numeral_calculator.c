@@ -24,9 +24,10 @@ int valid(char value[]) {
   if (!reti) {
       return 1;
   }
-  else if (reti == REG_NOMATCH) {
+  else {
       return 0;
   }
+
 }
 
 int starts_with(const char a[], const char b[])
@@ -52,6 +53,7 @@ int parse_roman(char value[])
       return decimalValues[i] + parse_roman(strcpy(string,&value[size]));
     }
   }
+  return 0;
 }
 
 void convert_to_roman(RomanNumeral* m, int decimalValue)

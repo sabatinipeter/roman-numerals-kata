@@ -1,22 +1,10 @@
 Roman Numerals Kata
 ========================
 
-Autotools:
+To run do as follows:
 
-You need the following programs installed on your system:
-  -- Autoconf 2.69
-  -- Automake 1.14.1
-  -- Libtool 2.4.2
-  -- Check 0.9.10
-
-Somewhat earlier versions of these programs might work.
-
-Then, do as follows:
-
-$ autoreconf --install
-$ ./configure
 $ make
-$ make check
+$ make test
 
 The environment for this programming exercise ​must​ utilize:
   -- Ubuntu Linux 14.04
