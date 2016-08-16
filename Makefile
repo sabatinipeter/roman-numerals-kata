@@ -12,8 +12,8 @@ TARGET = roman_numeral_calculator
 BUILD_DIR = build
 
 all: $(OBJS) $(OBJS_TEST)
-		@mkdir -p $(BUILD_DIR)
-		$(CC) $(CFLAGS) -o $(BUILD_DIR)/$(TARGET) $(OBJS) $(OBJS_TEST) $(LIBS)
+	@mkdir -p $(BUILD_DIR)
+	$(CC) $(CFLAGS) -o $(BUILD_DIR)/$(TARGET) $(OBJS) $(OBJS_TEST) $(LIBS)
 
 test:
 	@$(BUILD_DIR)/$(TARGET)
