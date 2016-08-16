@@ -1,0 +1,3 @@
+build/
+src/roman_numeral_calculator.o
+tests/check_roman_numeral_calculator.o
